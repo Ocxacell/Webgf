@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página para mi amor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========================= -->
+  <!-- Pantalla de bienvenida -->
+  <!-- ========================= -->
+  <div id="bienvenida">
+    <h1>❤️Bienvenida mi niña❤️</h1>
+    <button class="btn" onclick="cambiarPantalla('bienvenida','menu')">Entrar</button>
+
+    <!-- Nuevo botón para mostrar mensaje en la misma pantalla -->
+    <button class="btn" onclick="obtenerMensajes()">Mensaje de Hoy</button>
+    <div id="mensaje-contenedor" class="mensaje-contenedor oculto">
+      <p id="mensaje-dia" class="loading-text mensaje-animado"></p>
+    </div>
+
+
+  </div>
+
+  <!-- ========================= -->
+  <!-- Menú principal (oculto al inicio) -->
+  <!-- ========================= -->
+  <div id="menu" class="oculto">
+    <h2>Menú Principal 💕</h2>
+    <div class="menu-opciones">
+      <button class="btn">En construcción</button>
+      <button class="btn">En construcción</button>
+      <button class="btn">En construcción</button>
+      <button class="btn">En construcción</button>
+      <button class="btn" onclick="cambiarPantalla('menu','bienvenida')">Volver</button>
+    </div>
+  </div>
+  
+
+
+  <!-- ========================= -->
+  <!-- Scripts -->
+  <!-- ========================= -->
+  <script src="script.js"></script>
+</body>
+</html>
+
+ 

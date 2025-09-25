@@ -1,0 +1,219 @@
+
+/* ======================= */
+/* Reset básico            */
+/* ======================= */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ======================= */
+/* Fondo principal         */
+/* ======================= */
+body {
+  overflow: hidden;
+  background: radial-gradient(circle at center, #132190,#132145);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+/* ======================= */
+/* EFECTOS DE TEXTO    */
+/* ======================= */
+
+/* ======================= */
+/* Texto de bienvenida     */
+/* ======================= */
+h1 {
+  font-size: 2.5rem;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid rgba(255,255,255,.75);
+  animation: typing 3s steps(30, end), blink .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+/* ======================= */
+/* Texto de mensaje diario    */
+/* ======================= */
+/*1*/
+.mensaje-estilo {
+  text-shadow: 
+    #ffae00 2.5px 2.5px 0,
+    #ff00c0 5px 5px 0,
+    #aa0306 7.5px 7.5px 0,
+    #7c0003 10px 10px 10px;
+  color: #ffe69a;
+  padding: 10px 15px;       /* opcional: espacio alrededor */
+  border-radius: 10px;      /* opcional: bordes redondeados */
+  display: inline-block;    /* opcional: se adapta al tamaño del texto */
+}
+/*2*/
+.loading-text {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(90deg, #6a5af9, #a18fff, #6a5af9, #ffb6e6, #6a5af9) 0%/200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 900;
+  font-size: 2em;
+  font-family: 'Poppins', sans-serif;
+  animation: shimmer 2s linear infinite;
+}
+@keyframes shimmer { to { background-position: 100% } }
+/* ======================= */
+/* animaciones texto    */
+/* ======================= */
+/*1 fade in*/
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mensaje-animado {
+  animation: fadeIn 2.0s ease;
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+/* ======================= */
+/* animacion contenedor    */
+/* ======================= */
+
+.expandir {
+  animation: expandirContenedor 1.0s cubic-bezier(.5,1.7,.5,1) forwards;
+  transform-origin: top center;
+}
+
+@keyframes expandirContenedor {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* ======================= */
+/* Botones                 */
+/* ======================= */
+.btn {
+  margin-top: 30px;
+  padding: 12px 24px;
+  background: #fff;
+  color: #ff5e78;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.btn:hover {
+  background: #ff5e78;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* ======================= */
+/* Corazones flotando      */
+/* ======================= */
+.heart {
+  position: absolute;
+  bottom: -10px;
+  color: rgba(255,255,255,0.7);
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+}
+
+/* ======================= */
+/* Utilidades              */
+/* ======================= */
+.oculto {
+  display: none !important;
+}
+
+
+/* ======================= */
+/* Menú principal          */
+/* ======================= */
+#menu {
+  text-align: center;
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#menu h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.menu-opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ======================= */
+/* Pantalla de bienvenida  */
+/* ======================= */
+#bienvenida {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* Animaciones para transiciones de pantallas */
+.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+/*Cosas extra mensaje diario*/
+/* Contenedor visual para el mensaje del día */
+.mensaje-contenedor {
+  background: rgba(255,255,255,0.10);
+  border: 2px solid #a18fff;
+  border-radius: 18px;
+  padding: 24px 32px;
+  margin: 32px auto;
+  box-shadow: 0 4px 24px 0 rgba(106,90,249,0.15);
+  max-width: 1000px;
+  text-align: center;
+  backdrop-filter: blur(2px);
+}
+
+
+
