@@ -1,3 +1,65 @@
+// =========================
+// Vault de Secretos dinámico desde Google Sheets
+// =========================
+document.addEventListener('DOMContentLoaded', function() {
+  const vaultGrid = document.getElementById('vault-grid');
+  if (vaultGrid) {
+    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR4y9fMkogxMXhnpJAb7Li7-zeZKLty1pp1aPV5w4_kTkxiNM3bsqrRBRyK6hwNNxfAsOJ5ffWYyf4i/pub?gid=0&single=true&output=csv";
+    fetch(url)
+      .then(resp => resp.text())
+      .then(text => {
+        const rows = text.trim().split("\n").map(row => {
+          const matches = row.match(/("([^"]|"")*"|[^,]+)(?=,|$)/g);
+          if (!matches) return [];
+          return matches.map(cell => {
+            let v = cell.trim();
+            if (v.startsWith('"') && v.endsWith('"')) {
+              v = v.slice(1, -1).replace(/""/g, '"');
+            }
+            return v;
+          });
+        });
+        // Buscar índices de columnas
+        const header = rows[0].map(h => h.toLowerCase());
+        const idxSecreto = header.indexOf('secreto');
+        const idxPista = header.indexOf('pista');
+        const idxHallado = header.indexOf('hallado');
+        vaultGrid.innerHTML = '';
+        rows.slice(1).forEach(row => {
+          if (!row[idxSecreto]) return;
+          const celda = document.createElement('div');
+          celda.className = 'vault-celda';
+          celda.innerHTML = `
+            <div class="vault-numero">${row[idxSecreto]}</div>
+            <div class="vault-pista">${row[idxPista] || ''}</div>
+            <div class="vault-hallado">${row[idxHallado] ? '❤️Logrado❤️' : '❌Tu puedes❌'}</div>
+          `;
+          vaultGrid.appendChild(celda);
+        });
+      });
+  }
+
+});
+// =========================
+// Actualizacion de hallados
+// =========================
+
+
+// async function marcarSecreto(secretoId) {
+//   try {
+//     const url = `https://script.google.com/macros/s/AKfycbwoUrSxcFzqQ65Gky4URiJUophso-obJxGiBq25CMle9w0RkuELIPzzNFcFtLE9Cq6E/exec?secreto=${secretoId}&hallado=si`;
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     if (data.ok) {
+//       console.log(`✅ Secreto ${data.secreto} marcado como hallado`);
+//     } else {
+//       console.error("❌ Error:", data.error);
+//     }
+//   } catch (err) {
+//     console.error("❌ Error de red:", err);
+//   }
+// }
+
 // Función para mostrar popup reutilizable
 function mostrarPopup(mensajeHtml) {
   const popup = document.getElementById('popup');
@@ -185,6 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
       contador.textContent = clickCount;
       contador.classList.remove('oculto');
       if (clickCount === 21) {
+        // marcarSecreto(1)
         if (audio) {
           audio.loop = false; // Quitar loop para que solo suene una vez
           audio.currentTime = 0;

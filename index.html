@@ -20,8 +20,8 @@
   <!-- ========================= -->
   <!-- Pantalla de bienvenida -->
   <!-- ========================= -->
-  <div id="bienvenida">
-    <h1 id="titulo-bienvenida" class="typing">Bienvenida mi niña❤️</h1>
+  <div id="bienvenida" class="centrado-vertical">
+    <h1 id="titulo-bienvenida" class="typing">❤️Bienvenida mi niña❤️</h1>
     <button class="btn" onclick="cambiarPantalla('bienvenida','menu')">Entrar</button>
 
     <!-- Nuevo botón para mostrar mensaje en la misma pantalla -->
@@ -36,16 +36,24 @@
   <!-- ========================= -->
   <!-- Menú principal (oculto al inicio) -->
   <!-- ========================= -->
-  <div id="menu" class="oculto">
-    <h2>Menú Principal 💕</h2>
-    <div class="menu-opciones">
-      <button class="btn">En construcción</button>
+  <div id="menu" class="oculto flex-columna-centro centrado-vertical">
+    <h2 class="separacion-titulos texto-centro texto-blanco titulo-grande sombra-texto">Menú Principal</h2>
+    <div class="opciones-columna">
+      <button class="btn" onclick="cambiarPantalla('menu','vault-secretos')">Baúl de Secretos</button>
       <button class="btn">En construcción</button>
       <button class="btn">En construcción</button>
       <button class="btn">En construcción</button>
       <button class="btn" onclick="cambiarPantalla('menu','bienvenida')">Volver</button>
     </div>
   </div>
+
+  <!-- Sección Vault de Secretos (oculta al inicio) -->
+  <div id="vault-secretos" class="oculto flex-columna-centro">
+  <h2 class="Titulo-arriba-centrado texto-centro separacion-titulos texto-blanco titulo-grande sombra-texto">Baúl de Secretos</h2>
+  <div class="vault-grid" id="vault-grid"></div>
+     <button class="btn" onclick="cambiarPantalla('vault-secretos','menu')">Volver al menú</button>
+  </div>
+  
 
   <!-- Contador de clics para el easter egg -->
   <div id="contador-easter-egg" class="contador-easter-egg oculto">0</div>

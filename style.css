@@ -1,4 +1,169 @@
 /* ======================= */
+/* VAULT DE SECRETOS CALENDARIO */
+/* ======================= */
+.vault-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 18px;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 32px auto;
+  justify-items: center;
+}
+.vault-celda {
+  background: rgba(255,255,255,0.13);
+  border: 2px solid #a18fff;
+  border-radius: 14px;
+  min-height: 110px;
+  min-width: 110px;
+  max-width: 160px;
+  box-shadow: 0 2px 10px 0 rgba(106,90,249,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px 8px 8px;
+  position: relative;
+  transition: transform 0.15s;
+  cursor: pointer;
+  font-size: 1em;
+}
+.vault-celda:hover {
+  transform: scale(1.07) rotate(-2deg);
+  border-color: #ffb6e6;
+}
+.vault-numero {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #a18fff;
+  margin-bottom: 4px;
+}
+.vault-pista {
+  font-size: 0.98em;
+  color: #fff;
+  text-align: center;
+  word-break: break-word;
+  margin-bottom: 6px;
+}
+.vault-hallado {
+  font-size: 1.1em;
+  color: #ffb6e6;
+  font-weight: bold;
+}
+/* ======================= */
+/* VAULT DE SECRETOS TABLA */
+/* ======================= */
+.vault-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 14px;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 32px auto;
+  justify-items: center;
+}
+.vault-celda {
+  background: rgba(255,255,255,0.13);
+  border: 2px solid #a18fff;
+  border-radius: 14px;
+  min-height: 60px;
+  min-width: 60px;
+  max-width: 180px;
+  box-shadow: 0 2px 10px 0 rgba(106,90,249,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 6px 8px 6px;
+  position: relative;
+  transition: transform 0.15s;
+  cursor: pointer;
+  font-size: 1em;
+}
+.vault-celda-header {
+  font-weight: bold;
+  color: #ffe69a;
+  background: none;
+  border: none;
+  box-shadow: none;
+  cursor: default;
+}
+.vault-dia {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #a18fff;
+}
+.vault-pista {
+  font-size: 0.98em;
+  color: #fff;
+  text-align: center;
+  word-break: break-word;
+}
+.vault-estado {
+  font-size: 0.98em;
+  color: #ffb6e6;
+  font-weight: bold;
+}
+/* ======================= */
+/* VAULT DE SECRETOS GRID  */
+/* ======================= */
+.vault-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 18px;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 32px auto;
+  justify-items: center;
+}
+.vault-celda {
+  background: rgba(255,255,255,0.13);
+  border: 2px solid #a18fff;
+  border-radius: 14px;
+  min-height: 90px;
+  min-width: 90px;
+  max-width: 140px;
+  box-shadow: 0 2px 10px 0 rgba(106,90,249,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px 8px 8px;
+  position: relative;
+  transition: transform 0.15s;
+  cursor: pointer;
+}
+.vault-celda:hover {
+  transform: scale(1.07) rotate(-2deg);
+  border-color: #ffb6e6;
+}
+.vault-dia {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #a18fff;
+  margin-top: 4px;
+}
+.vault-secreto {
+  font-size: 0.95em;
+  color: #fff;
+  margin-top: 6px;
+  text-align: center;
+  word-break: break-word;
+}
+/* ======================= */
+/* UTILIDADES DE TEXTO     */
+/* ======================= */
+.texto-centro { text-align: center !important; }
+.texto-blanco { color: #fff !important; }
+.titulo-grande { font-size: 2rem !important; }
+.titulo-mediano { font-size: 1.5rem !important; }
+.titulo-chico { font-size: 1.1rem !important; }
+.negrita { font-weight: bold !important; }
+.mayusculas { text-transform: uppercase !important; }
+.espaciado { letter-spacing: 1.5px !important; }
+.sombra-texto { text-shadow: 0 2px 8px rgba(0,0,0,0.15) !important; }
+
+/* ======================= */
 /* RESET Y UTILIDADES      */
 /* ======================= */
 html, body {
@@ -61,9 +226,6 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
 }
 
@@ -143,26 +305,36 @@ h1 {
 }
 
 /* ======================= */
-/* MENÚ PRINCIPAL          */
+/* UTILIDADES DE LAYOUT    */
 /* ======================= */
-#menu {
-  text-align: center;
-  color: #fff;
+.flex-columna-centro {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
-#menu h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-.menu-opciones {
+.opciones-columna {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-
+.separacion-titulos {
+  margin-bottom: 20px;
+}
+.Titulo-arriba-centrado {
+  align-self: flex-start;
+  margin-top: 32px;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+}
+.centrado-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
 /* ======================= */
 /* CONTADOR EASTER EGG     */
 /* ======================= */
