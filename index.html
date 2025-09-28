@@ -1,3 +1,12 @@
+<!-- Popup básico reutilizable -->
+  <div id="popup" class="popup oculto">
+    <div class="popup-box">
+      <span id="popup-close" class="popup-close">&times;</span>
+      <div id="popup-content">¡Este es un popup reutilizable!</div>
+    </div>
+  </div>
+  <!-- Música de fondo (oculta) -->
+  <audio id="musica-fondo" src="multimedia\musica\thecraving.mp3" preload="auto" loop></audio>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,7 +21,7 @@
   <!-- Pantalla de bienvenida -->
   <!-- ========================= -->
   <div id="bienvenida">
-    <h1>❤️Bienvenida mi niña❤️</h1>
+    <h1 id="titulo-bienvenida" class="typing">Bienvenida mi niña❤️</h1>
     <button class="btn" onclick="cambiarPantalla('bienvenida','menu')">Entrar</button>
 
     <!-- Nuevo botón para mostrar mensaje en la misma pantalla -->
@@ -37,8 +46,10 @@
       <button class="btn" onclick="cambiarPantalla('menu','bienvenida')">Volver</button>
     </div>
   </div>
-  
 
+  <!-- Contador de clics para el easter egg -->
+  <div id="contador-easter-egg" class="contador-easter-egg oculto">0</div>
+  
 
   <!-- ========================= -->
   <!-- Scripts -->
@@ -48,4 +59,3 @@
 </body>
 </html>
 
- 

@@ -1,3 +1,37 @@
+// Función para mostrar popup reutilizable
+function mostrarPopup(mensajeHtml) {
+  const popup = document.getElementById('popup');
+  popup.classList.remove('fade-in');
+  popup.classList.remove('fade-out');
+  const popupContent = document.getElementById('popup-content');
+  if (popup && popupContent) {
+    popup.classList.add('fade-in');
+    popupContent.innerHTML = mensajeHtml;
+    popup.classList.remove('oculto');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const closeBtn = document.getElementById('popup-close');
+  const popup = document.getElementById('popup');
+  if (closeBtn && popup) {
+    closeBtn.onclick = function() {
+      if (!popup.classList.contains('fade-out')) {
+        popup.classList.remove('fade-in');
+        popup.classList.add('fade-out');
+        popup.addEventListener('animationend', function handler(e) {
+          if (e.animationName === 'fadeOut') {
+            popup.classList.add('oculto');
+            popup.classList.remove('fade-out');
+            popup.removeEventListener('animationend', handler);
+          }
+        });
+      }
+    };
+  }
+});
+
+
 function crearCorazon() {
   const heart = document.createElement("div");
   heart.innerHTML = "❤";
@@ -10,10 +44,9 @@ function crearCorazon() {
     heart.remove();
   }, 6000);
 }
-
 setInterval(crearCorazon, 500);
 
-
+/*Funcion para moverme entre menus*/
 function cambiarPantalla(origenId, destinoId) {
   const origen = document.getElementById(origenId);
   const destino = document.getElementById(destinoId);
@@ -99,7 +132,7 @@ async function obtenerMensajes() {
   const hoyUTC = new Date().toISOString().split("T")[0];
   console.log("Fecha local:", hoyLocal, "| Fecha UTC:", hoyUTC);
 
-  let mensajeHoy = "Aún no hay mensaje guardado para hoy 💌";
+  let mensajeHoy = "Aún no hay mensaje guardado para hoy";
 
   rows.forEach((row, index) => {
     if (index === 0) return; // encabezado
@@ -119,22 +152,80 @@ async function obtenerMensajes() {
       console.log(mensajeHoy);
     }
   });
-
+  /*Animaciones para traer o quitar el contenedor*/
   const el = document.getElementById("mensaje-dia");
   const contenedor = document.getElementById("mensaje-contenedor");
   if (el && contenedor) {
-    // Mostrar el contenedor y animar expansión
-    contenedor.classList.remove("oculto");
-    contenedor.classList.remove("expandir");
-    // Forzar reflow para reiniciar la animación
-    void contenedor.offsetWidth;
-    contenedor.classList.add("expandir");
-    // Quitar la clase de animación si ya la tiene
-    el.classList.remove("mensaje-animado");
-    void el.offsetWidth;
-    // Cambiar el texto
-    el.innerText = mensajeHoy;
-    // Volver a agregar la clase de animación
-    el.classList.add("mensaje-animado");
+    if (contenedor.classList.contains('oculto')) {
+      // Mostrar el contenedor con fade-in
+      el.innerText = mensajeHoy;
+      fadeInElemento(contenedor);
+    } else {
+      // Ocultar el contenedor con fade-out
+      fadeOutElemento(contenedor);
+    }
   }
+}
+
+/*cosas secretas*/
+// Easter Egg 1: 21 clics en el título de bienvenida
+document.addEventListener('DOMContentLoaded', function() {
+  const titulo = document.getElementById('titulo-bienvenida');
+  const audio = document.getElementById('musica-fondo');
+  const contador = document.getElementById('contador-easter-egg');
+  let clickCount = 0;
+  if (titulo && contador) {
+    titulo.addEventListener('click', function() {
+      // Animación bump
+      titulo.classList.remove('easter-egg_bienvenida');
+      void titulo.offsetWidth;
+      titulo.classList.add('easter-egg_bienvenida');
+      // Contador de clicks
+      clickCount++;
+      contador.textContent = clickCount;
+      contador.classList.remove('oculto');
+      if (clickCount === 21) {
+        if (audio) {
+          audio.loop = false; // Quitar loop para que solo suene una vez
+          audio.currentTime = 0;
+          audio.play();
+        }
+        mostrarPopup('<b>Secreto desbloqueado</b> <br>En mi corazón siempre hay espacio para amarte más de lo que ves, no dejes de buscar ese amor secreto.');
+        clickCount = 0; // reinicia el contador
+        contador.textContent = clickCount;
+        contador.classList.add('oculto');
+      }
+    });
+    // Quitar animación de typing después de 3s
+    setTimeout(() => titulo.classList.remove('typing'), 3000);
+  }
+});
+
+// Programacion de animaciones
+function fadeInElemento(elemento, animClass = "fade-in") {
+  if (!elemento) return;
+  elemento.classList.remove("oculto");
+  elemento.classList.remove("fade-out");
+  void elemento.offsetWidth;
+  elemento.classList.add(animClass);
+  // Quitar la clase de animación después de terminar
+  elemento.addEventListener('animationend', function handler(e) {
+    if (e.animationName.toLowerCase().includes('fadein')) {
+      elemento.classList.remove(animClass);
+      elemento.removeEventListener('animationend', handler);
+    }
+  });
+}
+
+function fadeOutElemento(elemento, animClass = "fade-out") {
+  if (!elemento) return;
+  elemento.classList.remove("fade-in");
+  elemento.classList.add(animClass);
+  elemento.addEventListener('animationend', function handler(e) {
+    if (e.animationName.toLowerCase().includes('fadeout')) {
+      elemento.classList.add("oculto");
+      elemento.classList.remove(animClass);
+      elemento.removeEventListener('animationend', handler);
+    }
+  });
 }
